@@ -16,28 +16,26 @@ public class OrderReceipt {
     }
 
     public String printReceipt() {
-        StringBuilder output = new StringBuilder();
-
-        output.append(getHeaders());
-
-        output.append(getCustomerNameWithAddress(order));
-
-        for (ItemInfo itemInfo : order.getItemInfos()) {
-            output.append(getItemInfo(itemInfo));
-        }
-
-        output.append("Sales Tax").append('\t').append(order.tax());
-
-        output.append("Total Amount").append('\t').append(order.totalAmount());
-        return output.toString();
+        return getHeaders() +
+                getCustomerNameWithAddress() +
+                getItemInfos() +
+                getSalesTax() +
+                getTotalAmount();
     }
 
     private String getHeaders() {
         return HEADERS;
     }
 
-    private String getCustomerNameWithAddress(Order order) {
+    private String getCustomerNameWithAddress() {
         return order.getCustomerName() + order.getCustomerAddress();
+    }
+
+    private String getItemInfos() {
+        return order.getItemInfos()
+                .stream()
+                .map(this::getItemInfo)
+                .reduce((prev, curr) -> prev + curr).orElse("");
     }
 
     private String getItemInfo(ItemInfo itemInfo) {
@@ -49,5 +47,13 @@ public class OrderReceipt {
                 '\t' +
                 itemInfo.totalAmount() +
                 '\n';
+    }
+
+    private String getSalesTax() {
+        return "Sales Tax" + '\t' + order.tax();
+    }
+
+    private String getTotalAmount() {
+        return "Total Amount" + '\t' + order.totalAmount();
     }
 }
