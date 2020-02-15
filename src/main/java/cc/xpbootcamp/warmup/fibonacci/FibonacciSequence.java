@@ -10,23 +10,23 @@ import java.util.stream.IntStream;
  * @date 2020/2/15
 */
 public class FibonacciSequence {
-    private int previous;
-    private int current;
+    private long previous;
+    private long current;
 
-    int generate() {
+    long generate() {
         if (current == 0) {
             current = 1;
             return current;
         }
 
-        int tmp = previous + current;
+        long tmp = previous + current;
         previous = current;
         current = tmp;
 
         return current;
     }
 
-    public List<Integer> getSequenceBy(int bit) {
+    public List<Long> getSequenceBy(int bit) {
         if (bit <= 0) {
             throw new IllegalArgumentException("Fibonacci sequence bit should be greater than 0.");
         }

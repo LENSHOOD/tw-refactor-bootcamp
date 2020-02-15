@@ -17,10 +17,10 @@ public class FibonacciSequenceTest {
     public void should_return_1_1_2_3_when_generate_fibonacci_four_times() {
         FibonacciSequence fbcSeq = new FibonacciSequence();
 
-        int first = fbcSeq.generate();
-        int second = fbcSeq.generate();
-        int third = fbcSeq.generate();
-        int fourth = fbcSeq.generate();
+        long first = fbcSeq.generate();
+        long second = fbcSeq.generate();
+        long third = fbcSeq.generate();
+        long fourth = fbcSeq.generate();
 
         assertThat(first).isEqualTo(1);
         assertThat(second).isEqualTo(1);
@@ -33,9 +33,9 @@ public class FibonacciSequenceTest {
         FibonacciSequence fbcSeq = new FibonacciSequence();
         int tenBit = 10;
 
-        List<Integer> fibonacciList = fbcSeq.getSequenceBy(tenBit);
+        List<Long> fibonacciList = fbcSeq.getSequenceBy(tenBit);
 
-        assertThat(fibonacciList).containsExactly(1, 1, 2, 3, 5, 8, 13, 21, 34, 55);
+        assertThat(fibonacciList).containsExactly(1L, 1L, 2L, 3L, 5L, 8L, 13L, 21L, 34L, 55L);
     }
 
     @Test
@@ -45,5 +45,15 @@ public class FibonacciSequenceTest {
         assertThatThrownBy(() -> fbcSeq.getSequenceBy(-1))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessage("Fibonacci sequence bit should be greater than 0.");
+    }
+    
+    @Test
+    public void should_get_12586269025_when_generate_to_fifty() {
+        FibonacciSequence fbcSeq = new FibonacciSequence();
+        int fiftyBit = 50;
+
+        List<Long> fibonacciList = fbcSeq.getSequenceBy(fiftyBit);
+
+        assertThat(fibonacciList.get(49)).isEqualTo(12586269025L);
     }
 }
