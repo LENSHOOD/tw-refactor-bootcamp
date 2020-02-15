@@ -3,9 +3,9 @@ package cc.xpbootcamp.warmup.cashier;
 import java.util.List;
 
 public class Order {
-    String cName;
-    String addr;
-    List<LineItem> lineItemList;
+    private String cName;
+    private String addr;
+    private List<LineItem> lineItemList;
 
     public Order(String cName, String addr, List<LineItem> lineItemList) {
         this.cName = cName;
@@ -13,15 +13,15 @@ public class Order {
         this.lineItemList = lineItemList;
     }
 
-    public String getCustomerName() {
+    String getCustomerName() {
         return cName;
     }
 
-    public String getCustomerAddress() {
+    String getCustomerAddress() {
         return addr;
     }
 
-    public List<LineItem> getLineItems() {
+    List<LineItem> getLineItems() {
         return lineItemList;
     }
 }
