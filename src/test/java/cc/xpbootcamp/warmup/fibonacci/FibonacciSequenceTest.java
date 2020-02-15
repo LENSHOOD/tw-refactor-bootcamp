@@ -1,7 +1,8 @@
 package cc.xpbootcamp.warmup.fibonacci;
 
-import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
+
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * FibonacciSequenceTest:
@@ -15,7 +16,22 @@ public class FibonacciSequenceTest {
 
         int sum = fbcSeq.calculateSum(2, 3);
 
-        Assertions.assertThat(sum).isEqualTo(5);
+        assertThat(sum).isEqualTo(5);
+    }
+
+    @Test
+    public void should_return_1_1_2_3_when_generate_fibonacci_four_times() {
+        FibonacciSequence fbcSeq = new FibonacciSequence();
+
+        int first = fbcSeq.generate();
+        int second = fbcSeq.generate();
+        int third = fbcSeq.generate();
+        int fourth = fbcSeq.generate();
+
+        assertThat(first).isEqualTo(1);
+        assertThat(second).isEqualTo(1);
+        assertThat(third).isEqualTo(2);
+        assertThat(fourth).isEqualTo(3);
     }
 
 
