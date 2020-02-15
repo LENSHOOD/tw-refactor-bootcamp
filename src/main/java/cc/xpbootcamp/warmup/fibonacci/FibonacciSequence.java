@@ -13,10 +13,6 @@ public class FibonacciSequence {
     private int previous;
     private int current;
 
-    int calculateSum(int first, int second) {
-        return first + second;
-    }
-
     int generate() {
         if (current == 0) {
             current = 1;

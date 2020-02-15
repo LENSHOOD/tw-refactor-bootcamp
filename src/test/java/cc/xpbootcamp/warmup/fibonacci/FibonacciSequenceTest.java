@@ -14,15 +14,6 @@ import static org.assertj.core.api.Assertions.assertThatThrownBy;
 */
 public class FibonacciSequenceTest {
     @Test
-    public void should_get_sum_5_when_given_two_numbers_2_3() {
-        FibonacciSequence fbcSeq = new FibonacciSequence();
-
-        int sum = fbcSeq.calculateSum(2, 3);
-
-        assertThat(sum).isEqualTo(5);
-    }
-
-    @Test
     public void should_return_1_1_2_3_when_generate_fibonacci_four_times() {
         FibonacciSequence fbcSeq = new FibonacciSequence();
 
