@@ -2,7 +2,10 @@ package cc.xpbootcamp.warmup.fibonacci;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.List;
+
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 /**
  * FibonacciSequenceTest:
@@ -34,5 +37,22 @@ public class FibonacciSequenceTest {
         assertThat(fourth).isEqualTo(3);
     }
 
+    @Test
+    public void should_return_fibonacci_sequence_of_10_bit_when_get_sequence_by_10_bit() {
+        FibonacciSequence fbcSeq = new FibonacciSequence();
+        int tenBit = 10;
 
+        List<Integer> fibonacciList = fbcSeq.getSequenceBy(tenBit);
+
+        assertThat(fibonacciList).containsExactly(1, 1, 2, 3, 5, 8, 13, 21, 34, 55);
+    }
+
+    @Test
+    public void should_throw_illegalArgumentException_when_getSequenceBy_param_not_greater_than_0() {
+        FibonacciSequence fbcSeq = new FibonacciSequence();
+
+        assertThatThrownBy(() -> fbcSeq.getSequenceBy(-1))
+                .isInstanceOf(IllegalArgumentException.class)
+                .hasMessage("Fibonacci sequence bit should be greater than 0.");
+    }
 }

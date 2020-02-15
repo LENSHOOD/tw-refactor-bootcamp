@@ -1,5 +1,9 @@
 package cc.xpbootcamp.warmup.fibonacci;
 
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.IntStream;
+
 /**
  * FibonacciSequence:
  * @author zhangxuhai
@@ -24,5 +28,13 @@ public class FibonacciSequence {
         current = tmp;
 
         return current;
+    }
+
+    public List<Integer> getSequenceBy(int bit) {
+        if (bit <= 0) {
+            throw new IllegalArgumentException("Fibonacci sequence bit should be greater than 0.");
+        }
+
+        return IntStream.range(0, bit).mapToObj(i -> generate()).collect(Collectors.toList());
     }
 }
