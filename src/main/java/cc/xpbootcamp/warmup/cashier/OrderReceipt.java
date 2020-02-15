@@ -8,8 +8,9 @@ package cc.xpbootcamp.warmup.cashier;
  *
  */
 public class OrderReceipt {
-    private Order order;
+    private static final String HEADERS = "======Printing Orders======\n";
 
+    private Order order;
     public OrderReceipt(Order order) {
         this.order = order;
     }
@@ -17,39 +18,45 @@ public class OrderReceipt {
     public String printReceipt() {
         StringBuilder output = new StringBuilder();
 
-        // print headers
-        output.append("======Printing Orders======\n");
+        output.append(getHeaders());
 
-        // print date, bill no, customer name
-        output.append(order.getCustomerName());
-        output.append(order.getCustomerAddress());
+        output.append(getCustomerNameWithAddress(order));
 
-        // prints lineItems
-        double totSalesTx = 0d;
-        double tot = 0d;
+        double orderTax = 0d;
+        double orderAmount = 0d;
         for (ItemInfo itemInfo : order.getItemInfos()) {
-            output.append(itemInfo.getDescription());
-            output.append('\t');
-            output.append(itemInfo.getPrice());
-            output.append('\t');
-            output.append(itemInfo.getQuantity());
-            output.append('\t');
-            output.append(itemInfo.totalAmount());
-            output.append('\n');
-
-            // calculate sales tax @ rate of 10%
+            output.append(getItemInfo(itemInfo));
             double salesTax = itemInfo.totalAmount() * .10;
-            totSalesTx += salesTax;
+            orderTax += salesTax;
 
             // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            tot += itemInfo.totalAmount() + salesTax;
+            orderAmount += itemInfo.totalAmount() + salesTax;
         }
 
         // prints the state tax
-        output.append("Sales Tax").append('\t').append(totSalesTx);
+        output.append("Sales Tax").append('\t').append(orderTax);
 
         // print total amount
-        output.append("Total Amount").append('\t').append(tot);
+        output.append("Total Amount").append('\t').append(orderAmount);
         return output.toString();
+    }
+
+    private String getHeaders() {
+        return HEADERS;
+    }
+
+    private String getCustomerNameWithAddress(Order order) {
+        return order.getCustomerName() + order.getCustomerAddress();
+    }
+
+    private String getItemInfo(ItemInfo itemInfo) {
+        return itemInfo.getDescription() +
+                '\t' +
+                itemInfo.getPrice() +
+                '\t' +
+                itemInfo.getQuantity() +
+                '\t' +
+                itemInfo.totalAmount() +
+                '\n';
     }
 }
