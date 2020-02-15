@@ -3,6 +3,7 @@ package cc.xpbootcamp.warmup.cashier;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -23,11 +24,12 @@ class OrderReceiptTest {
 
     @Test
     public void shouldPrintLineItemAndSalesTaxInformation() {
-        List<ItemInfo> itemInfos = new ArrayList<ItemInfo>() {{
-            add(new ItemInfo("milk", 10.0, 2));
-            add(new ItemInfo("biscuits", 5.0, 5));
-            add(new ItemInfo("chocolate", 20.0, 1));
-        }};
+        List<ItemInfo> itemInfos = new ArrayList<>(Arrays.asList(
+                new ItemInfo("milk", 10.0, 2),
+                new ItemInfo("biscuits", 5.0, 5),
+                new ItemInfo("chocolate", 20.0, 1)
+        ));
+
         OrderReceipt receipt = new OrderReceipt(new Order(null, null, itemInfos));
 
         String output = receipt.printReceipt();
