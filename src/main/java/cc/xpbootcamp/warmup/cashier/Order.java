@@ -1,6 +1,7 @@
 package cc.xpbootcamp.warmup.cashier;
 
 import java.util.List;
+import java.util.function.Function;
 
 public class Order {
     private String customerName;
@@ -23,5 +24,17 @@ public class Order {
 
     List<ItemInfo> getItemInfos() {
         return itemInfoList;
+    }
+
+    double tax() {
+        return sumItemInfosBy(ItemInfo::tax);
+    }
+
+    double totalAmount() {
+        return sumItemInfosBy(ItemInfo::totalAmount);
+    }
+
+    private double sumItemInfosBy(Function<ItemInfo, Double> getNumber) {
+        return itemInfoList.stream().map(getNumber).reduce(Double::sum).orElse(0.0);
     }
 }

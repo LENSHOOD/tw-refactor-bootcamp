@@ -22,19 +22,13 @@ public class OrderReceipt {
 
         output.append(getCustomerNameWithAddress(order));
 
-        double orderTax = 0d;
-        double orderAmount = 0d;
         for (ItemInfo itemInfo : order.getItemInfos()) {
             output.append(getItemInfo(itemInfo));
-            orderTax += itemInfo.tax();
-            orderAmount += itemInfo.totalAmount();
         }
 
-        // prints the state tax
-        output.append("Sales Tax").append('\t').append(orderTax);
+        output.append("Sales Tax").append('\t').append(order.tax());
 
-        // print total amount
-        output.append("Total Amount").append('\t').append(orderAmount);
+        output.append("Total Amount").append('\t').append(order.totalAmount());
         return output.toString();
     }
 
