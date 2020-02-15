@@ -26,11 +26,8 @@ public class OrderReceipt {
         double orderAmount = 0d;
         for (ItemInfo itemInfo : order.getItemInfos()) {
             output.append(getItemInfo(itemInfo));
-            double salesTax = itemInfo.totalAmount() * .10;
-            orderTax += salesTax;
-
-            // calculate total amount of lineItem = price * quantity + 10 % sales tax
-            orderAmount += itemInfo.totalAmount() + salesTax;
+            orderTax += itemInfo.tax();
+            orderAmount += itemInfo.totalAmount();
         }
 
         // prints the state tax
