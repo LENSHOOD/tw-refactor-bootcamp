@@ -1,9 +1,9 @@
 package cc.xpbootcamp.warmup.cashier;
 
 import java.util.List;
-import java.util.function.Function;
 
 public class Order {
+    public static final double TAX_RAT = 0.1;
     private String customerName;
     private String customerAddress;
     private List<ItemInfo> itemInfoList;
@@ -27,14 +27,14 @@ public class Order {
     }
 
     double tax() {
-        return sumItemInfosBy(ItemInfo::tax);
+        return baseAmount() * TAX_RAT;
+    }
+
+    private double baseAmount() {
+        return itemInfoList.stream().map(ItemInfo::totalAmount).reduce(Double::sum).orElse(0.0);
     }
 
     double totalAmount() {
-        return sumItemInfosBy(ItemInfo::totalAmount);
-    }
-
-    private double sumItemInfosBy(Function<ItemInfo, Double> getNumber) {
-        return itemInfoList.stream().map(getNumber).reduce(Double::sum).orElse(0.0);
+        return baseAmount() + tax();
     }
 }

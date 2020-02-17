@@ -25,14 +25,6 @@ public class ItemInfo {
 	}
 
     double totalAmount() {
-		return amountWithOutTax() + tax();
-    }
-
-    double tax() {
-		return amountWithOutTax() * .10;
-	}
-
-	private double amountWithOutTax() {
 		return price * qty;
-	}
+    }
 }
