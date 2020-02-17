@@ -1,5 +1,7 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import java.util.Optional;
+
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,
  * price and amount. It also calculates the sales tax @ 10% and prints as part
@@ -28,7 +30,8 @@ public class OrderReceipt {
     }
 
     private String getCustomerNameWithAddress() {
-        return order.getCustomerName() + order.getCustomerAddress();
+        return Optional.ofNullable(order.getCustomerName()).orElse("") +
+                Optional.ofNullable(order.getCustomerAddress()).orElse("");
     }
 
     private String getItemInfos() {

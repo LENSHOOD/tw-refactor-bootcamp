@@ -2,6 +2,9 @@ package cc.xpbootcamp.warmup.cashier;
 
 import org.junit.jupiter.api.Test;
 
+import java.time.Clock;
+import java.time.LocalDateTime;
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -12,7 +15,10 @@ import static org.hamcrest.Matchers.containsString;
 class OrderReceiptTest {
     @Test
     void shouldPrintCustomerInformationOnOrder() {
-        Order order = new Order("Mr X", "Chicago, 60601", new ArrayList<ItemInfo>());
+        ZonedDateTime notWednesday = ZonedDateTime.of(
+                LocalDateTime.of(2020, 2, 1, 0, 0, 0),
+                Clock.systemDefaultZone().getZone());
+        Order order = new Order("Mr X", "Chicago, 60601", new ArrayList<ItemInfo>(), notWednesday);
         OrderReceipt receipt = new OrderReceipt(order);
 
         String output = receipt.printReceipt();
@@ -23,14 +29,17 @@ class OrderReceiptTest {
     }
 
     @Test
-    public void shouldPrintLineItemAndSalesTaxInformation() {
+    void shouldPrintLineItemAndSalesTaxInformation() {
+        ZonedDateTime notWednesday = ZonedDateTime.of(
+                LocalDateTime.of(2020, 2, 1, 0, 0, 0),
+                Clock.systemDefaultZone().getZone());
         List<ItemInfo> itemInfos = new ArrayList<>(Arrays.asList(
                 new ItemInfo("milk", 10.0, 2),
                 new ItemInfo("biscuits", 5.0, 5),
                 new ItemInfo("chocolate", 20.0, 1)
         ));
 
-        OrderReceipt receipt = new OrderReceipt(new Order(null, null, itemInfos));
+        OrderReceipt receipt = new OrderReceipt(new Order(null, null, itemInfos, notWednesday));
 
         String output = receipt.printReceipt();
 
