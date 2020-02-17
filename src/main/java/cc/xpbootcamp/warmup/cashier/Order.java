@@ -9,24 +9,12 @@ import java.util.List;
 public class Order {
     private static final double TAX_RAT = 0.1;
     private static final double DISCOUNT_RATE = 0.02;
-    private String customerName;
-    private String customerAddress;
     private List<ItemInfo> itemInfoList;
     private ZonedDateTime createTime;
 
-    public Order(String customerName, String customerAddress, List<ItemInfo> itemInfoList, ZonedDateTime createTime) {
-        this.customerName = customerName;
-        this.customerAddress = customerAddress;
+    public Order(List<ItemInfo> itemInfoList, ZonedDateTime createTime) {
         this.itemInfoList = itemInfoList;
         this.createTime = createTime;
-    }
-
-    String getCustomerName() {
-        return customerName;
-    }
-
-    String getCustomerAddress() {
-        return customerAddress;
     }
 
     List<ItemInfo> getItemInfos() {

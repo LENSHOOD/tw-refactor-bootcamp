@@ -1,7 +1,5 @@
 package cc.xpbootcamp.warmup.cashier;
 
-import java.util.Optional;
-
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,
  * price and amount. It also calculates the sales tax @ 10% and prints as part
@@ -19,19 +17,14 @@ public class OrderReceipt {
 
     public String printReceipt() {
         return getHeaders() +
-                getCustomerNameWithAddress() +
                 getItemInfos() +
                 getSalesTax() +
+                getDiscount() +
                 getTotalAmount();
     }
 
     private String getHeaders() {
         return HEADERS;
-    }
-
-    private String getCustomerNameWithAddress() {
-        return Optional.ofNullable(order.getCustomerName()).orElse("") +
-                Optional.ofNullable(order.getCustomerAddress()).orElse("");
     }
 
     private String getItemInfos() {
@@ -43,20 +36,30 @@ public class OrderReceipt {
 
     private String getItemInfo(ItemInfo itemInfo) {
         return itemInfo.getDescription() +
-                '\t' +
-                itemInfo.getPrice() +
-                '\t' +
+                ", " +
+                formatAs2Digit(itemInfo.getPrice()) +
+                " x " +
                 itemInfo.getQuantity() +
-                '\t' +
-                itemInfo.totalAmount() +
+                ", " +
+                formatAs2Digit(itemInfo.totalAmount()) +
                 '\n';
     }
 
+
+    private String getDiscount() {
+        double discount = order.discount();
+        return Double.valueOf(discount).equals(0.0) ? "" : "Discount: " + formatAs2Digit(discount) + '\n';
+    }
+
     private String getSalesTax() {
-        return "Sales Tax" + '\t' + order.tax();
+        return "Sales Tax: " + formatAs2Digit(order.tax()) + '\n';
     }
 
     private String getTotalAmount() {
-        return "Total Amount" + '\t' + order.totalAmount();
+        return "Total Amount: " + formatAs2Digit(order.totalAmount()) + '\n';
+    }
+
+    private String formatAs2Digit(double num) {
+        return String.format("%.2f", num);
     }
 }

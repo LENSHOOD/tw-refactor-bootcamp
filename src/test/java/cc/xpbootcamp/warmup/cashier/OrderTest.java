@@ -17,7 +17,7 @@ class OrderTest {
                 LocalDateTime.of(2020, 2, 5, 0, 0, 0),
                 Clock.systemDefaultZone().getZone());
         List<ItemInfo> itemInfos = Collections.singletonList(new ItemInfo("fake-item", 71.5, 1));
-        Order order = new Order(null, null, itemInfos, wednesday);
+        Order order = new Order(itemInfos, wednesday);
 
         double discount = order.discount();
 
@@ -30,7 +30,7 @@ class OrderTest {
                 LocalDateTime.of(2020, 2, 1, 0, 0, 0),
                 Clock.systemDefaultZone().getZone());
         List<ItemInfo> itemInfos = Collections.singletonList(new ItemInfo("fake-item", 71.5, 1));
-        Order order = new Order(null, null, itemInfos, notWednesday);
+        Order order = new Order(itemInfos, notWednesday);
 
         double discount = order.discount();
 
