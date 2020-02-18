@@ -11,6 +11,6 @@ class HeaderPrinterTest {
 
         Output output = headerPrinter.print(new Input());
 
-        assertThat(output.get()).isEqualTo("======Printing Orders======\n");
+        assertThat(output.get()).isEqualTo("===== 老王超市，值得信赖 ======\n");
     }
 }

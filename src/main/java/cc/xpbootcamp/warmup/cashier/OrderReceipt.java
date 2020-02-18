@@ -17,14 +17,16 @@ public class OrderReceipt {
 
     public String printReceipt() {
         PrinterNode head = new HeaderPrinter()
-                .addNode(new DatePrinter(order.getCreateTime().toLocalDate()));
+                .addNode(new NewLinePrinter())
+                .addNode(new DatePrinter(order.getCreateTime().toLocalDate()))
+                .addNode(new NewLinePrinter());
 
         order.getItemInfos().stream().map(ItemInfoPrinter::new).forEach(head::addNode);
 
         head.addNode(new SplitLinePrinter())
-                .addNode(new AmountPrinter("Sales Tax", order.tax()))
-                .addNode(new DiscountPrinter("Discount", order.discount()))
-                .addNode(new AmountPrinter("Total Amount", order.totalAmount()));
+                .addNode(new AmountPrinter("税额", order.tax()))
+                .addNode(new DiscountPrinter("折扣", order.discount()))
+                .addNode(new AmountPrinter("总价", order.totalAmount()));
 
         return head.print(new Input()).get();
     }

@@ -20,21 +20,21 @@ class OrderReceiptTest {
                 LocalDateTime.of(2020, 2, 1, 0, 0, 0),
                 Clock.systemDefaultZone().getZone());
         List<ItemInfo> itemInfos = new ArrayList<>(Arrays.asList(
-                new ItemInfo("milk", 10.0, 2),
-                new ItemInfo("biscuits", 5.0, 5),
-                new ItemInfo("chocolate", 20.0, 1)
+                new ItemInfo("牛奶", 10.0, 2),
+                new ItemInfo("饼干", 5.0, 5),
+                new ItemInfo("巧克力", 20.0, 1)
         ));
 
         OrderReceipt receipt = new OrderReceipt(new Order(itemInfos, notWednesday));
 
         String output = receipt.printReceipt();
 
-        assertThat(output, containsString("milk, 10.00 x 2, 20.00\n"));
-        assertThat(output, containsString("biscuits, 5.00 x 5, 25.00\n"));
-        assertThat(output, containsString("chocolate, 20.00 x 1, 20.00\n"));
-        assertThat(output, containsString("Sales Tax: 6.50\n"));
-        assertThat(output, not(containsString("Discount: ")));
-        assertThat(output, containsString("Total Amount: 71.50\n"));
+        assertThat(output, containsString("牛奶, 10.00 x 2, 20.00\n"));
+        assertThat(output, containsString("饼干, 5.00 x 5, 25.00\n"));
+        assertThat(output, containsString("巧克力, 20.00 x 1, 20.00\n"));
+        assertThat(output, containsString("税额: 6.50\n"));
+        assertThat(output, not(containsString("折扣: ")));
+        assertThat(output, containsString("总价: 71.50\n"));
     }
 
     @Test
@@ -43,20 +43,20 @@ class OrderReceiptTest {
                 LocalDateTime.of(2020, 2, 5, 0, 0, 0),
                 Clock.systemDefaultZone().getZone());
         List<ItemInfo> itemInfos = new ArrayList<>(Arrays.asList(
-                new ItemInfo("milk", 10.0, 2),
-                new ItemInfo("biscuits", 5.0, 5),
-                new ItemInfo("chocolate", 20.0, 1)
+                new ItemInfo("牛奶", 10.0, 2),
+                new ItemInfo("饼干", 5.0, 5),
+                new ItemInfo("巧克力", 20.0, 1)
         ));
 
         OrderReceipt receipt = new OrderReceipt(new Order(itemInfos, wednesday));
 
         String output = receipt.printReceipt();
 
-        assertThat(output, containsString("milk, 10.00 x 2, 20.00\n"));
-        assertThat(output, containsString("biscuits, 5.00 x 5, 25.00\n"));
-        assertThat(output, containsString("chocolate, 20.00 x 1, 20.00\n"));
-        assertThat(output, containsString("Sales Tax: 6.50\n"));
-        assertThat(output, containsString("Discount: 1.43\n"));
-        assertThat(output, containsString("Total Amount: 70.07\n"));
+        assertThat(output, containsString("牛奶, 10.00 x 2, 20.00\n"));
+        assertThat(output, containsString("饼干, 5.00 x 5, 25.00\n"));
+        assertThat(output, containsString("巧克力, 20.00 x 1, 20.00\n"));
+        assertThat(output, containsString("税额: 6.50\n"));
+        assertThat(output, containsString("折扣: 1.43\n"));
+        assertThat(output, containsString("总价: 70.07\n"));
     }
 }

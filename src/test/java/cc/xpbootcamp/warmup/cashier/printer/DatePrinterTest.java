@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 import static org.junit.Assert.*;
 
@@ -16,7 +17,7 @@ class DatePrinterTest {
 
         Output output = datePrinter.print(new Input());
 
-        String expect = now.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy L d, E")) + "\n";
+        String expect = now.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy年MM月dd, EEEE", Locale.CHINESE)) + "\n";
         Assertions.assertThat(output.get()).isEqualTo(expect);
     }
 }

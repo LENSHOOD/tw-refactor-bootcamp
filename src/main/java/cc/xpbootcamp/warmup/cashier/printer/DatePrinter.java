@@ -2,6 +2,7 @@ package cc.xpbootcamp.warmup.cashier.printer;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.Locale;
 
 /**
  * DatePrinter:
@@ -10,7 +11,7 @@ import java.time.format.DateTimeFormatter;
 */
 public class DatePrinter extends PrinterNode {
     private LocalDate date;
-    private static final String DATE_PATTERN = "yyyy L d, E";
+    private static final String DATE_PATTERN = "yyyy年MM月dd, EEEE";
 
     public DatePrinter(LocalDate date) {
         this.date = date;
@@ -18,6 +19,6 @@ public class DatePrinter extends PrinterNode {
 
     @Override
     protected Input doPrint(Input input) {
-        return input.append(date.format(DateTimeFormatter.ofPattern(DATE_PATTERN))).append("\n");
+        return input.append(date.format(DateTimeFormatter.ofPattern(DATE_PATTERN, Locale.CHINESE))).append("\n");
     }
 }
