@@ -1,5 +1,7 @@
 package cc.xpbootcamp.warmup.cashier;
 
+import cc.xpbootcamp.warmup.cashier.printer.*;
+
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,
  * price and amount. It also calculates the sales tax @ 10% and prints as part
@@ -8,57 +10,23 @@ package cc.xpbootcamp.warmup.cashier;
  *
  */
 public class OrderReceipt {
-    private static final String HEADERS = "======Printing Orders======\n";
-
     private Order order;
     public OrderReceipt(Order order) {
         this.order = order;
     }
 
     public String printReceipt() {
-        return getHeaders() +
-                getItemInfos() +
-                getSalesTax() +
-                getDiscount() +
-                getTotalAmount();
+        PrinterNode head = new HeaderPrinter()
+                .addNode(new DatePrinter(order.getCreateTime().toLocalDate()));
+
+        order.getItemInfos().stream().map(ItemInfoPrinter::new).forEach(head::addNode);
+
+        head.addNode(new SplitLinePrinter())
+                .addNode(new AmountPrinter("Sales Tax", order.tax()))
+                .addNode(new DiscountPrinter("Discount", order.discount()))
+                .addNode(new AmountPrinter("Total Amount", order.totalAmount()));
+
+        return head.print(new Input()).get();
     }
 
-    private String getHeaders() {
-        return HEADERS;
-    }
-
-    private String getItemInfos() {
-        return order.getItemInfos()
-                .stream()
-                .map(this::getItemInfo)
-                .reduce((prev, curr) -> prev + curr).orElse("");
-    }
-
-    private String getItemInfo(ItemInfo itemInfo) {
-        return itemInfo.getDescription() +
-                ", " +
-                formatAs2Digit(itemInfo.getPrice()) +
-                " x " +
-                itemInfo.getQuantity() +
-                ", " +
-                formatAs2Digit(itemInfo.totalAmount()) +
-                '\n';
-    }
-
-    private String getDiscount() {
-        double discount = order.discount();
-        return Double.valueOf(discount).equals(0.0) ? "" : "Discount: " + formatAs2Digit(discount) + '\n';
-    }
-
-    private String getSalesTax() {
-        return "Sales Tax: " + formatAs2Digit(order.tax()) + '\n';
-    }
-
-    private String getTotalAmount() {
-        return "Total Amount: " + formatAs2Digit(order.totalAmount()) + '\n';
-    }
-
-    private String formatAs2Digit(double num) {
-        return String.format("%.2f", num);
-    }
 }

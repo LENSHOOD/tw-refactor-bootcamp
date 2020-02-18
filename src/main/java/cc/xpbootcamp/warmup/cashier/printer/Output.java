@@ -13,7 +13,7 @@ public class Output {
         this.outputString = outputString;
     }
 
-    String get() {
+    public String get() {
         return outputString;
     }
 }

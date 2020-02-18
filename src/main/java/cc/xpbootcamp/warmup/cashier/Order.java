@@ -10,6 +10,7 @@ public class Order {
     private static final double TAX_RAT = 0.1;
     private static final double DISCOUNT_RATE = 0.02;
     private List<ItemInfo> itemInfoList;
+
     private ZonedDateTime createTime;
 
     public Order(List<ItemInfo> itemInfoList, ZonedDateTime createTime) {
@@ -19,6 +20,10 @@ public class Order {
 
     List<ItemInfo> getItemInfos() {
         return itemInfoList;
+    }
+
+    public ZonedDateTime getCreateTime() {
+        return createTime;
     }
 
     double discount() {
