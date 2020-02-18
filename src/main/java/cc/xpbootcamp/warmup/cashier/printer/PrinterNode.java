@@ -8,13 +8,19 @@ import java.util.Objects;
  * @date 2020/2/18
 */
 public abstract class PrinterNode {
-    protected PrinterNode next;
+    private PrinterNode next;
 
-    public void setNext(PrinterNode next) {
-        this.next = next;
+    public PrinterNode addNode(PrinterNode next) {
+        if (Objects.isNull(this.next)) {
+            this.next = next;
+        } else {
+            this.next.addNode(next);
+        }
+
+        return this;
     }
 
-    Output print(Input input) {
+    public Output print(Input input) {
         if (Objects.isNull(input)) {
             return Output.EMPTY;
         }
