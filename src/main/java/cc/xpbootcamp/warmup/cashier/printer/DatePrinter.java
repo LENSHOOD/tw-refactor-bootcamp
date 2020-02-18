@@ -1,5 +1,8 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
+import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrinterNode;
+
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;

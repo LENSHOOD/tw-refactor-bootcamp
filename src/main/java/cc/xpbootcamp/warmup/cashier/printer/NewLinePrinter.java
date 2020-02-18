@@ -1,5 +1,8 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
+import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrinterNode;
+
 /**
  * NewLinePrinter:
  * @author zhangxuhai

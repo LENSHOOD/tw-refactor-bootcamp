@@ -1,5 +1,7 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
+import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+
 /**
  * DiscountPrinter:
  * @author zhangxuhai

@@ -1,13 +1,13 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
+import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+import cc.xpbootcamp.warmup.cashier.printer.common.Output;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Locale;
-
-import static org.junit.Assert.*;
 
 class DatePrinterTest {
     @Test

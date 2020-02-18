@@ -1,4 +1,4 @@
-package cc.xpbootcamp.warmup.cashier.printer;
+package cc.xpbootcamp.warmup.cashier.printer.common;
 
 /**
  * Input:
@@ -12,7 +12,7 @@ public class Input {
         return new Output(builder.toString());
     }
 
-    Input append(String s) {
+    public Input append(String s) {
         builder.append(s);
         return this;
     }

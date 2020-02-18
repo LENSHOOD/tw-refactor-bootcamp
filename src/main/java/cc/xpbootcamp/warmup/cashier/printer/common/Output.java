@@ -1,4 +1,4 @@
-package cc.xpbootcamp.warmup.cashier.printer;
+package cc.xpbootcamp.warmup.cashier.printer.common;
 
 /**
  * Output:

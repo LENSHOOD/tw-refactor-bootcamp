@@ -1,6 +1,8 @@
 package cc.xpbootcamp.warmup.cashier;
 
 import cc.xpbootcamp.warmup.cashier.printer.*;
+import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrinterNode;
 
 /**
  * OrderReceipt prints the details of order including customer name, address, description, quantity,

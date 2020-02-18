@@ -1,4 +1,4 @@
-package cc.xpbootcamp.warmup.cashier.printer;
+package cc.xpbootcamp.warmup.cashier.printer.common;
 
 import java.util.Objects;
 
@@ -10,11 +10,11 @@ import java.util.Objects;
 public abstract class PrinterNode {
     private PrinterNode next;
 
-    public PrinterNode addNode(PrinterNode next) {
-        if (Objects.isNull(this.next)) {
-            this.next = next;
+    public PrinterNode addNode(PrinterNode node) {
+        if (Objects.isNull(next)) {
+            next = node;
         } else {
-            this.next.addNode(next);
+            next.addNode(node);
         }
 
         return this;
