@@ -45,7 +45,6 @@ public class OrderReceipt {
                 '\n';
     }
 
-
     private String getDiscount() {
         double discount = order.discount();
         return Double.valueOf(discount).equals(0.0) ? "" : "Discount: " + formatAs2Digit(discount) + '\n';
