@@ -18,6 +18,6 @@ public class DatePrinter extends PrinterNode {
 
     @Override
     protected Input doPrint(Input input) {
-        return input.append(date.format(DateTimeFormatter.ofPattern(DATE_PATTERN)));
+        return input.append(date.format(DateTimeFormatter.ofPattern(DATE_PATTERN))).append("\n");
     }
 }

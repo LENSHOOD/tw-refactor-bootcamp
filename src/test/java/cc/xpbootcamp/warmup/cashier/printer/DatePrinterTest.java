@@ -16,7 +16,7 @@ class DatePrinterTest {
 
         Output output = datePrinter.print(new Input());
 
-        String expect = now.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy L d, E"));
+        String expect = now.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy L d, E")) + "\n";
         Assertions.assertThat(output.get()).isEqualTo(expect);
     }
 }
