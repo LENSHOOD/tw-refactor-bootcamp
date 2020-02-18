@@ -12,19 +12,19 @@ public class ItemInfo {
 		this.qty = qty;
 	}
 
-	String getDescription() {
+	public String getDescription() {
 		return desc;
 	}
 
-	double getPrice() {
+	public double getPrice() {
 		return price;
 	}
 
-	int getQuantity() {
+	public int getQuantity() {
 		return qty;
 	}
 
-    double totalAmount() {
+    public double totalAmount() {
 		return price * qty;
     }
 }
