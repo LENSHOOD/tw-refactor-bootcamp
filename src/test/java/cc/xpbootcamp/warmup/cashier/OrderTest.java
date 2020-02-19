@@ -2,6 +2,7 @@ package cc.xpbootcamp.warmup.cashier;
 
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
 import java.time.*;
 import java.util.Collections;
 import java.util.List;
@@ -19,9 +20,9 @@ class OrderTest {
         List<ItemInfo> itemInfos = Collections.singletonList(new ItemInfo("fake-item", 71.5, 1));
         Order order = new Order(itemInfos, wednesday);
 
-        double discount = order.discount();
+        BigDecimal discount = order.discount();
 
-        assertThat(discount, is(1.57));
+        assertThat(discount, is(BigDecimal.valueOf(1.57)));
     }
 
     @Test
@@ -32,8 +33,8 @@ class OrderTest {
         List<ItemInfo> itemInfos = Collections.singletonList(new ItemInfo("fake-item", 71.5, 1));
         Order order = new Order(itemInfos, notWednesday);
 
-        double discount = order.discount();
+        BigDecimal discount = order.discount();
 
-        assertThat(discount, is(0.0));
+        assertThat(discount, is(BigDecimal.valueOf(0.0)));
     }
 }
