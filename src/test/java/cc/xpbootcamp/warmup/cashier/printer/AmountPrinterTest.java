@@ -5,10 +5,12 @@ import cc.xpbootcamp.warmup.cashier.printer.common.Output;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 class AmountPrinterTest {
     @Test
     void should_return_name_with_amount_when_print_amount() {
-        AmountPrinter amountPrinter = new AmountPrinter("Sales Tax", 6.5);
+        AmountPrinter amountPrinter = new AmountPrinter("Sales Tax", BigDecimal.valueOf(6.5));
 
         Output output = amountPrinter.print(new Input());
 
