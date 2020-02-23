@@ -1,6 +1,6 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
 
 import java.math.BigDecimal;
 
@@ -18,7 +18,7 @@ public class DiscountPrinter extends AmountPrinter {
     }
 
     @Override
-    protected Input doPrint(Input input) {
-        return discount.equals(BigDecimal.ZERO) ? input : super.doPrint(input);
+    protected PrintElement doPrint(PrintElement printElement) {
+        return discount.equals(BigDecimal.ZERO) ? printElement : super.doPrint(printElement);
     }
 }

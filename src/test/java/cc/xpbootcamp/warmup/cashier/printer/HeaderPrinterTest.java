@@ -1,7 +1,7 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
-import cc.xpbootcamp.warmup.cashier.printer.common.Output;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintedMatter;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,8 +11,8 @@ class HeaderPrinterTest {
     void should_get_header_when_print_header() {
         HeaderPrinter headerPrinter = new HeaderPrinter();
 
-        Output output = headerPrinter.print(new Input());
+        PrintedMatter printedMatter = headerPrinter.print(PrintElement.blankPrintElement());
 
-        assertThat(output.get()).isEqualTo("===== 老王超市，值得信赖 ======\n");
+        assertThat(printedMatter.get()).isEqualTo("===== 老王超市，值得信赖 ======\n");
     }
 }

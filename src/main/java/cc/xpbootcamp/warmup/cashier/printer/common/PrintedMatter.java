@@ -5,11 +5,11 @@ package cc.xpbootcamp.warmup.cashier.printer.common;
  * @author zhangxuhai
  * @date 2020/2/18
 */
-public class Output {
-    static final Output EMPTY = new Output("");
+public class PrintedMatter {
+    static final PrintedMatter EMPTY = new PrintedMatter("");
     private String outputString;
 
-    Output(String outputString) {
+    PrintedMatter(String outputString) {
         this.outputString = outputString;
     }
 

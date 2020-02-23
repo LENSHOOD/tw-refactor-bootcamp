@@ -8,8 +8,8 @@ class PrinterNodeTest {
 
     static class TestNode extends PrinterNode {
         @Override
-        protected Input doPrint(Input input) {
-            return input.append("test");
+        protected PrintElement doPrint(PrintElement printElement) {
+            return printElement.append("test");
         }
     }
 
@@ -17,9 +17,9 @@ class PrinterNodeTest {
     void should_output_get_test_string_when_input_set_test() {
         PrinterNode node = new TestNode();
 
-        Output output = node.print(new Input());
+        PrintedMatter printedMatter = node.print(PrintElement.blankPrintElement());
 
-        assertThat(output.get()).isEqualTo("test");
+        assertThat(printedMatter.get()).isEqualTo("test");
     }
 
     @Test
@@ -27,17 +27,17 @@ class PrinterNodeTest {
         PrinterNode node = new TestNode();
         node.addNode(new TestNode());
 
-        Output output = node.print(new Input());
+        PrintedMatter printedMatter = node.print(PrintElement.blankPrintElement());
 
-        assertThat(output.get()).isEqualTo("testtest");
+        assertThat(printedMatter.get()).isEqualTo("testtest");
     }
 
     @Test
     void should_output_get_empty_string_when_input_is_null() {
         PrinterNode node = new TestNode();
 
-        Output output = node.print(null);
+        PrintedMatter printedMatter = node.print(null);
 
-        assertThat(output.get()).isEqualTo("");
+        assertThat(printedMatter.get()).isEqualTo("");
     }
 }

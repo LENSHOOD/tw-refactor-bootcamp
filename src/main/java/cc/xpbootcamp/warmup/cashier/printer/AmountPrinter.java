@@ -1,6 +1,6 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
 import cc.xpbootcamp.warmup.cashier.printer.common.PrinterNode;
 
 import java.math.BigDecimal;
@@ -22,8 +22,8 @@ public class AmountPrinter extends PrinterNode {
     }
 
     @Override
-    protected Input doPrint(Input input) {
-        return input
+    protected PrintElement doPrint(PrintElement printElement) {
+        return printElement
                 .append(description)
                 .append(": ")
                 .append(amount.setScale(FLOAT_SCALE, RoundingMode.HALF_UP).toString())

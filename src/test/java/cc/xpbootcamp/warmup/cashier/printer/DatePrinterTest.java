@@ -1,7 +1,7 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
-import cc.xpbootcamp.warmup.cashier.printer.common.Output;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintedMatter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -15,9 +15,9 @@ class DatePrinterTest {
         ZonedDateTime now = ZonedDateTime.now();
         DatePrinter datePrinter = new DatePrinter(now.toLocalDate());
 
-        Output output = datePrinter.print(new Input());
+        PrintedMatter printedMatter = datePrinter.print(PrintElement.blankPrintElement());
 
         String expect = now.toLocalDate().format(DateTimeFormatter.ofPattern("yyyy年MM月dd, EEEE", Locale.CHINESE)) + "\n";
-        Assertions.assertThat(output.get()).isEqualTo(expect);
+        Assertions.assertThat(printedMatter.get()).isEqualTo(expect);
     }
 }

@@ -1,6 +1,6 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
 import cc.xpbootcamp.warmup.cashier.printer.common.PrinterNode;
 
 /**
@@ -10,7 +10,7 @@ import cc.xpbootcamp.warmup.cashier.printer.common.PrinterNode;
 */
 public class NewLinePrinter extends PrinterNode {
     @Override
-    protected Input doPrint(Input input) {
-        return input.append("\n");
+    protected PrintElement doPrint(PrintElement printElement) {
+        return printElement.append("\n");
     }
 }

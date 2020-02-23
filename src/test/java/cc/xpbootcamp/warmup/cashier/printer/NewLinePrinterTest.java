@@ -1,7 +1,7 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
-import cc.xpbootcamp.warmup.cashier.printer.common.Output;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintedMatter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -10,8 +10,8 @@ class NewLinePrinterTest {
     void should_return_new_line_char_when_print_new_line() {
         NewLinePrinter newLinePrinter = new NewLinePrinter();
 
-        Output output = newLinePrinter.print(new Input());
+        PrintedMatter printedMatter = newLinePrinter.print(PrintElement.blankPrintElement());
 
-        Assertions.assertThat(output.get()).isEqualTo("\n");
+        Assertions.assertThat(printedMatter.get()).isEqualTo("\n");
     }
 }

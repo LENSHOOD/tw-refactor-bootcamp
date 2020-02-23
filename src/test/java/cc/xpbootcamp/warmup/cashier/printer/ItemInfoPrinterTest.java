@@ -1,8 +1,8 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
 import cc.xpbootcamp.warmup.cashier.ItemInfo;
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
-import cc.xpbootcamp.warmup.cashier.printer.common.Output;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintedMatter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +12,8 @@ class ItemInfoPrinterTest {
         ItemInfo info = new ItemInfo("milk", 10.0, 2);
         ItemInfoPrinter itemInfoPrinter = new ItemInfoPrinter(info);
 
-        Output output = itemInfoPrinter.print(new Input());
+        PrintedMatter printedMatter = itemInfoPrinter.print(PrintElement.blankPrintElement());
 
-        Assertions.assertThat(output.get()).isEqualTo("milk, 10.00 x 2, 20.00\n");
+        Assertions.assertThat(printedMatter.get()).isEqualTo("milk, 10.00 x 2, 20.00\n");
     }
 }

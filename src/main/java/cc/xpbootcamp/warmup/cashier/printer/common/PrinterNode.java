@@ -20,14 +20,14 @@ public abstract class PrinterNode {
         return this;
     }
 
-    public Output print(Input input) {
-        if (Objects.isNull(input)) {
-            return Output.EMPTY;
+    public PrintedMatter print(PrintElement printElement) {
+        if (Objects.isNull(printElement)) {
+            return PrintedMatter.EMPTY;
         }
 
-        Input done = doPrint(input);
+        PrintElement done = doPrint(printElement);
         return Objects.isNull(next) ? done.toOutput() : next.print(done);
     }
 
-    protected abstract Input doPrint(Input input);
+    protected abstract PrintElement doPrint(PrintElement printElement);
 }

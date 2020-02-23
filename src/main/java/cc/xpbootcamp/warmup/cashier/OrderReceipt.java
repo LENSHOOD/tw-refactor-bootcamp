@@ -1,7 +1,7 @@
 package cc.xpbootcamp.warmup.cashier;
 
 import cc.xpbootcamp.warmup.cashier.printer.*;
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
 import cc.xpbootcamp.warmup.cashier.printer.common.PrinterNode;
 
 /**
@@ -17,19 +17,19 @@ public class OrderReceipt {
     }
 
     public String printReceipt() {
-        PrinterNode head = new HeaderPrinter()
+        PrinterNode printerChainEntrance = new HeaderPrinter()
                 .addNode(new NewLinePrinter())
                 .addNode(new DatePrinter(order.getCreateTime().toLocalDate()))
                 .addNode(new NewLinePrinter());
 
-        order.getItemInfos().stream().map(ItemInfoPrinter::new).forEach(head::addNode);
+        order.getItemInfos().stream().map(ItemInfoPrinter::new).forEach(printerChainEntrance::addNode);
 
-        head.addNode(new SplitLinePrinter())
+        printerChainEntrance.addNode(new SplitLinePrinter())
                 .addNode(new AmountPrinter("税额", order.tax()))
                 .addNode(new DiscountPrinter("折扣", order.discount()))
                 .addNode(new AmountPrinter("总价", order.totalAmount()));
 
-        return head.print(new Input()).get();
+        return printerChainEntrance.print(PrintElement.blankPrintElement()).get();
     }
 
 }

@@ -1,7 +1,7 @@
 package cc.xpbootcamp.warmup.cashier.printer;
 
-import cc.xpbootcamp.warmup.cashier.printer.common.Input;
-import cc.xpbootcamp.warmup.cashier.printer.common.Output;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintElement;
+import cc.xpbootcamp.warmup.cashier.printer.common.PrintedMatter;
 import org.assertj.core.api.Assertions;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +12,8 @@ class DiscountPrinterTest {
     void should_return_empty_when_discount_is_zero() {
         DiscountPrinter discountPrinter = new DiscountPrinter("Discount", BigDecimal.ZERO);
 
-        Output output = discountPrinter.print(new Input());
+        PrintedMatter printedMatter = discountPrinter.print(PrintElement.blankPrintElement());
 
-        Assertions.assertThat(output.get()).isBlank();
+        Assertions.assertThat(printedMatter.get()).isBlank();
     }
 }
