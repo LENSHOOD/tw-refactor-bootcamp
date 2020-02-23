@@ -3,6 +3,7 @@ package cc.xpbootcamp.warmup.cashier;
 import org.junit.jupiter.api.Test;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.*;
 import java.util.Collections;
 import java.util.List;
@@ -22,7 +23,7 @@ class OrderTest {
 
         BigDecimal discount = order.discount();
 
-        assertThat(discount, is(BigDecimal.valueOf(1.57)));
+        assertThat(discount.setScale(2, RoundingMode.HALF_UP), is(BigDecimal.valueOf(1.57)));
     }
 
     @Test
@@ -35,6 +36,6 @@ class OrderTest {
 
         BigDecimal discount = order.discount();
 
-        assertThat(discount, is(BigDecimal.valueOf(0.0)));
+        assertThat(discount, is(BigDecimal.ZERO));
     }
 }
