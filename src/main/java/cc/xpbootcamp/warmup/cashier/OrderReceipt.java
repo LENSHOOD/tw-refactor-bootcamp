@@ -5,11 +5,10 @@ import cc.xpbootcamp.warmup.cashier.printer.common.Input;
 import cc.xpbootcamp.warmup.cashier.printer.common.PrinterNode;
 
 /**
- * OrderReceipt prints the details of order including customer name, address, description, quantity,
- * price and amount. It also calculates the sales tax @ 10% and prints as part
- * of order. It computes the total order amount (amount of individual lineItems +
- * total sales tax) and prints it.
+ * OrderReceipt prints the details of order as human readable format, it's including
+ * item description, quantity, price and amount (with tax).
  *
+ * Also, if the order contains discount, the discount amount will be print.
  */
 public class OrderReceipt {
     private Order order;
